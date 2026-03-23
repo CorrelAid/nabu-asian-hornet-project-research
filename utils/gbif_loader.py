@@ -24,16 +24,33 @@ def load_observations(
     limit: int = 300,
 ) -> tuple[pd.DataFrame, int]:
     key = get_species_key(species_name)
-    res = occ.search(taxonKey=key, country=country, limit=limit, year="2000,2025")
-    total = res["count"]
 
-    if not res["results"]:
+    # Завантажуємо по 50 записів на рік для рівномірного покриття
+    records_per_year = max(10, limit // 25)
+    years = range(2000, 2026)
+    all_results = []
+
+    for year in years:
+        res = occ.search(
+            taxonKey=key,
+            country=country,
+            year=year,
+            limit=records_per_year,
+        )
+        if res["results"]:
+            all_results.extend(res["results"])
+
+    total_res = occ.search(taxonKey=key, country=country, limit=1)
+    total = total_res["count"]
+
+    if not all_results:
         return pd.DataFrame(), total
 
-    df = pd.DataFrame(res["results"])
+    df = pd.DataFrame(all_results)
     df["eventDate"] = pd.to_datetime(df["eventDate"], errors="coerce")
-    df["year"] = df["eventDate"].dt.year.astype("Int64")
-    df["year"] = df["year"].astype("int", errors="ignore")
+    df["year"] = df["eventDate"].dt.year
+    df["year"] = pd.to_numeric(df["year"], errors="coerce").astype("Int64")
+
     label = next(
         (k for k, v in SPECIES.items() if v == species_name),
         species_name
