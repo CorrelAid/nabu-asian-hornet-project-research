@@ -124,9 +124,15 @@ if "month" in df_valid.columns:
         ticktext=list(month_names.values())
     )
     fig3.add_vrect(
-        x0=12, x1=2,
-        fillcolor="lightblue", opacity=0.2,
-        annotation_text="Winter",
+        x0=11.5, x1=12.5,
+        fillcolor="lightblue", opacity=0.3,
+        annotation_text="Dec",
+        annotation_position="top left"
+    )
+    fig3.add_vrect(
+        x0=0.5, x1=2.5,
+        fillcolor="lightblue", opacity=0.3,
+        annotation_text="Jan-Feb (winter)",
         annotation_position="top left"
     )
     st.plotly_chart(fig3, use_container_width=True)
@@ -147,16 +153,21 @@ CITIES = {
 @st.cache_data(ttl=86400)
 def get_jan_temp(lat: float, lon: float) -> float:
     url = (
-        f"https://api.open-meteo.com/v1/climate"
+        f"https://archive-api.open-meteo.com/v1/archive"
         f"?latitude={lat}&longitude={lon}"
         f"&start_date=2010-01-01&end_date=2023-12-31"
-        f"&monthly=temperature_2m_mean"
+        f"&daily=temperature_2m_mean"
+        f"&timezone=Europe%2FBerlin"
     )
     try:
-        r = requests.get(url, timeout=10)
+        r = requests.get(url, timeout=15)
         data = r.json()
-        temps = data.get("monthly", {}).get("temperature_2m_mean", [])
-        jan_temps = [t for i, t in enumerate(temps) if i % 12 == 0]
+        dates = data.get("daily", {}).get("time", [])
+        temps = data.get("daily", {}).get("temperature_2m_mean", [])
+        jan_temps = [
+            t for d, t in zip(dates, temps)
+            if d[5:7] == "01" and t is not None
+        ]
         return round(sum(jan_temps) / len(jan_temps), 1) if jan_temps else None
     except Exception:
         return None
