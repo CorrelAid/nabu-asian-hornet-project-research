@@ -125,15 +125,23 @@ if "month" in df_valid.columns:
     )
     fig3.add_vrect(
         x0=11.5, x1=12.5,
-        fillcolor="lightblue", opacity=0.3,
+        fillcolor="lightblue", opacity=0.2,
         annotation_text="Dec",
-        annotation_position="top left"
+        annotation_position="top right"
     )
     fig3.add_vrect(
         x0=0.5, x1=2.5,
-        fillcolor="lightblue", opacity=0.3,
-        annotation_text="Jan-Feb (winter)",
+        fillcolor="lightblue", opacity=0.2,
+        annotation_text="Winter",
         annotation_position="top left"
+    )
+    fig3.update_layout(
+        xaxis=dict(
+            tickmode="array",
+            tickvals=list(range(1, 13)),
+            ticktext=["Jan","Feb","Mar","Apr","May","Jun",
+                      "Jul","Aug","Sep","Oct","Nov","Dec"]
+        )
     )
     st.plotly_chart(fig3, use_container_width=True)
 
