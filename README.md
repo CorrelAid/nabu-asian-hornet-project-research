@@ -212,10 +212,3 @@ The app will be available at `http://localhost:8501`.
 
 ---
 
-## 📄 License
-
-Apache License 2.0 — see [LICENSE](LICENSE) for details.
-
----
-
-*NABU × CorrelAid 2026*
