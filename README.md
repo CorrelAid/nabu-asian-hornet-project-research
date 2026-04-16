@@ -12,8 +12,6 @@ or the folders for each question e.g. #nabu-team-research-q1
 
 # 🐝 NABU Hornet Dashboard — Streamlit Prototype
 
-**Project:** CorrelAid × NABU (Naturschutzbund Deutschland)
-
 **Purpose:** Exploratory prototype for analyzing the spread of *Vespa crabro* (European hornet) and *Vespa velutina* (Asian hornet) using GBIF occurrence data.
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://hornet-dashboard.streamlit.app/)
