@@ -42,3 +42,8 @@ Seasonality — unexpected species difference. European hornet peaks in August; 
 ### Spatial distribution. 
 
 The scatter map confirms a clear geographic pattern: Asian hornet is concentrated in western Germany — NRW, Rheinland-Pfalz, Baden-Württemberg — consistent with a westward invasion front entering from France and Belgium. European hornet is distributed uniformly across the entire country. 
+
+### doc
+
+doc/Hornet Project - High Level.drawio.svg -- system overview and open issues. 
+  This picture shows the system components and current open issues from research team point of view as a base for discussion and clarification.
