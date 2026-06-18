@@ -47,3 +47,5 @@ The scatter map confirms a clear geographic pattern: Asian hornet is concentrate
 
 doc/Hornet Project - High Level.drawio.svg -- system overview and open issues. 
   This picture shows the system components and current open issues from research team point of view as a base for discussion and clarification.
+
+added C4 Level 1 and Level 2 diagrams from Vitalii
