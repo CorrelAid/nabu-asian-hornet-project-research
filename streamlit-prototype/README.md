@@ -50,37 +50,37 @@ This dashboard is a **rapid prototype** built to explore and visualize hornet oc
 ## 🛠️ Tech Stack
 
 ### Data & Analysis
-| Library | Version | Purpose |
-|---|---|---|
-| `pandas` | 2.2.3 | Data manipulation and cleaning |
-| `pygbif` | 0.6.4 | GBIF API client for occurrence data |
-| `requests` | 2.32.5 | HTTP calls to Open-Meteo climate API |
-| `gdown` | 5.2.0 | Downloading pre-built CSVs from Google Drive |
+| Library    | Version | Purpose                                      |
+| ---------- | ------- | -------------------------------------------- |
+| `pandas`   | 2.2.3   | Data manipulation and cleaning               |
+| `pygbif`   | 0.6.4   | GBIF API client for occurrence data          |
+| `requests` | 2.32.5  | HTTP calls to Open-Meteo climate API         |
+| `gdown`    | 5.2.0   | Downloading pre-built CSVs from Google Drive |
 
 ### Visualization
-| Library | Version | Purpose |
-|---|---|---|
-| `plotly` | 5.24.0 | Interactive charts and maps |
-| `folium` | 0.18.0 | Leaflet.js-based interactive maps |
-| `streamlit-folium` | 0.24.0 | Folium map rendering inside Streamlit |
+| Library            | Version | Purpose                               |
+| ------------------ | ------- | ------------------------------------- |
+| `plotly`           | 5.24.0  | Interactive charts and maps           |
+| `folium`           | 0.18.0  | Leaflet.js-based interactive maps     |
+| `streamlit-folium` | 0.24.0  | Folium map rendering inside Streamlit |
 
 ### App Framework
-| Library | Version | Purpose |
-|---|---|---|
-| `streamlit` | 1.43.0 | Multi-page web app and UI components |
+| Library     | Version | Purpose                              |
+| ----------- | ------- | ------------------------------------ |
+| `streamlit` | 1.43.0  | Multi-page web app and UI components |
 
 ### External APIs
-| API | Usage |
-|---|---|
-| [GBIF Occurrence API](https://www.gbif.org/developer/occurrence) | Species observation records |
+| API                                                                              | Usage                                         |
+| -------------------------------------------------------------------------------- | --------------------------------------------- |
+| [GBIF Occurrence API](https://www.gbif.org/developer/occurrence)                 | Species observation records                   |
 | [Open-Meteo ERA5 Archive](https://open-meteo.com/en/docs/historical-weather-api) | Historical daily temperature data (2010–2023) |
 
 ### Infrastructure
-| Tool | Purpose |
-|---|---|
-| Google Drive | Hosting pre-downloaded GBIF CSV datasets for Germany |
-| Streamlit Community Cloud | App deployment and hosting |
-| GitHub | Version control and team collaboration |
+| Tool                      | Purpose                                              |
+| ------------------------- | ---------------------------------------------------- |
+| Google Drive              | Hosting pre-downloaded GBIF CSV datasets for Germany |
+| Streamlit Community Cloud | App deployment and hosting                           |
+| GitHub                    | Version control and team collaboration               |
 
 ---
 
@@ -110,25 +110,25 @@ data/                       # Local CSV cache (gitignored — large files)
 <a id="research-questions"></a>
 ## 🔬 Research Questions
 
-| Page | Research Question | Key Visualizations |
-|---|---|---|
-| **Main** | Overview of both species | Timeline (line chart), scatter map |
-| **Q1 — Overview** | Is the European hornet being displaced? | Overlap scatter map, bar chart by Bundesland |
-| **Q2 — Displacement** | How widespread is the European hornet in Germany? | Latitude/longitude histograms, density heatmap |
-| **Q3 — Habitat** | Which habitat types show highest hornet presence? | Keyword-classified bar + pie chart, monthly seasonality |
-| **Q4 — Protected Areas** | Do Asian hornets occur more in Natura 2000 areas? | Protected area flag, grouped bar + pie chart |
-| **Q5 — Distribution** | Is the Asian hornet synanthropic? | Regional bar chart, raw data table, debug mode |
-| **Q6 — Climate** | How do weather conditions affect hornet spread? | Climate zones, seasonal line chart, January temperature chart |
+| Page                     | Research Question                                 | Key Visualizations                                            |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------- |
+| **Main**                 | Overview of both species                          | Timeline (line chart), scatter map                            |
+| **Q1 — Overview**        | Is the European hornet being displaced?           | Overlap scatter map, bar chart by Bundesland                  |
+| **Q2 — Displacement**    | How widespread is the European hornet in Germany? | Latitude/longitude histograms, density heatmap                |
+| **Q3 — Habitat**         | Which habitat types show highest hornet presence? | Keyword-classified bar + pie chart, monthly seasonality       |
+| **Q4 — Protected Areas** | Do Asian hornets occur more in Natura 2000 areas? | Protected area flag, grouped bar + pie chart                  |
+| **Q5 — Distribution**    | Is the Asian hornet synanthropic?                 | Regional bar chart, raw data table, debug mode                |
+| **Q6 — Climate**         | How do weather conditions affect hornet spread?   | Climate zones, seasonal line chart, January temperature chart |
 
 ### Sidebar Controls
 
 All pages share consistent sidebar filters:
 
-| Control | Options | Default |
-|---|---|---|
-| Country | `DE`, `FR`, `BE`, `NL`, `AT`, `CH` | `DE` |
-| Max records per species | 100 – 1000 | 300 |
-| Year range | 2000 – 2025 | 2010 – 2025 |
+| Control                 | Options                            | Default     |
+| ----------------------- | ---------------------------------- | ----------- |
+| Country                 | `DE`, `FR`, `BE`, `NL`, `AT`, `CH` | `DE`        |
+| Max records per species | 100 – 1000                         | 300         |
+| Year range              | 2000 – 2025                        | 2010 – 2025 |
 
 ---
 
@@ -164,13 +164,13 @@ Q6 fetches ERA5 reanalysis data for 6 representative German cities to use averag
 <a id="known-limitations"></a>
 ## ⚠️ Known Limitations
 
-| Area | Limitation |
-|---|---|
-| Urban/rural analysis | `pages/4_Urban_Rural.py` is empty — not yet implemented |
-| Habitat & protected areas | Classification uses locality text keywords, not actual spatial boundaries |
-| Statistics | No formal testing yet (correlation coefficients, significance tests) |
-| Germany focus | CSV cache only covers `DE`; other countries use a small live API sample |
-| Production readiness | Prototype only — no authentication, persistent storage, or scheduled data updates |
+| Area                      | Limitation                                                                        |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| Urban/rural analysis      | `pages/4_Urban_Rural.py` is empty — not yet implemented                           |
+| Habitat & protected areas | Classification uses locality text keywords, not actual spatial boundaries         |
+| Statistics                | No formal testing yet (correlation coefficients, significance tests)              |
+| Germany focus             | CSV cache only covers `DE`; other countries use a small live API sample           |
+| Production readiness      | Prototype only — no authentication, persistent storage, or scheduled data updates |
 
 **Production target:** Django + HTMX with PostgreSQL/PostGIS backend, Leaflet.js maps, and weekly automated GBIF sync via Celery.
 

@@ -1,0 +1,6 @@
+# htaccess file for the website which is included as IFRAME
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header always set Content-Security-Policy "frame-ancestors 'self' https://quick-notes.de/  https://Nabu.de/  https://correlaid.org/"
+</IfModule>
