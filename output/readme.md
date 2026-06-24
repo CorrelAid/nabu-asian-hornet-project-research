@@ -14,7 +14,7 @@ You have to wait 16 seconds until the data appears. This will be much faster in 
   - 🟢show datapoints in a map (demo only, loads directly from GBIF database)
       using nabu-asian-hornet-project-dashboard\mockups\v0-june8
   - ✍daily csv update
-  - (optional) simulate 1000 new points daily, simulate high load (70.000 data points per year) [UI could be slow]
+  - (optional) simulate 1000 new points daily, simulate high load (70.000 data points per year) 
 
 NOTE: the data will be wrong or even simulated. It's just a demo.
 
@@ -64,11 +64,21 @@ This is after the IFRAME
 - external dependencies: Leaflet/Map ??
 
 # configuration
-Edit .env file (tbd) or use UI ???
+- credentials
+  Edit .env file or use UI ???
+
+- IFRAME target
+  - .htaccess must have
+~~~
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header always set Content-Security-Policy "frame-ancestors 'self' https://Nabu.de/  https://correlaid.org/"
+</IfModule>
+~~~
 
 - cronjob
     daily (in case of db errors)
-- GBIF user/pw and email
+
 
 # Operations
 - deploy
@@ -80,5 +90,6 @@ Edit .env file (tbd) or use UI ???
 - Error handling
 - Alerting
 - Backup
-- Contact
-  who ?
+- Support after GO-Live
+  Data Engineer: tbd 
+  Deployment support: Achim
